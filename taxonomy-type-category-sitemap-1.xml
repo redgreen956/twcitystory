@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="https://twcitystory.com/sitemap-stylesheet.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://twcitystory.pages.dev/sitemap-stylesheet.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcitystory.com/category/短影音/</loc>
+    <loc>https://twcitystory.pages.dev/category/短影音/</loc>
     <lastmod>2026-07-22T05:46:34+00:00</lastmod>
   </url>
   <url>
-    <loc>https://twcitystory.com/category/city-stories/</loc>
+    <loc>https://twcitystory.pages.dev/category/city-stories/</loc>
     <lastmod>2026-07-22T05:46:34+00:00</lastmod>
   </url>
   <url>
-    <loc>https://twcitystory.com/category/visual-creator/</loc>
+    <loc>https://twcitystory.pages.dev/category/visual-creator/</loc>
     <lastmod>2026-07-22T05:46:34+00:00</lastmod>
   </url>
   <url>
-    <loc>https://twcitystory.com/category/portfolio/</loc>
+    <loc>https://twcitystory.pages.dev/category/portfolio/</loc>
     <lastmod>2026-07-22T05:46:34+00:00</lastmod>
   </url>
 </urlset>
