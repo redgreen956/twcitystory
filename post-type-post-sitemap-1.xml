@@ -2,6 +2,41 @@
 <?xml-stylesheet type="text/xsl" href="https://twcitystory.pages.dev/sitemap-stylesheet.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://twcitystory.pages.dev/kaohsiung-overpass/</loc>
+    <lastmod>2026-07-22T13:43:55+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED09042.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED09042-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED08943-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED08927-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED09023-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED09144-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED09075-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED08913-1024x684.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://twcitystory.pages.dev/megaport-tour/</loc>
+    <lastmod>2026-07-22T13:14:23+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/04/megaport-tour-2021-e1784726035341.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://twcitystory.pages.dev/opera-performance-recording/</loc>
     <lastmod>2026-07-11T10:54:53+00:00</lastmod>
     <image:image>
