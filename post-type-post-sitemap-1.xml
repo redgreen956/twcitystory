@@ -2,6 +2,76 @@
 <?xml-stylesheet type="text/xsl" href="https://twcitystory.pages.dev/sitemap-stylesheet.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://twcitystory.pages.dev/kaohsiung-port-travel-2021/</loc>
+    <lastmod>2026-07-23T03:36:27+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/03/DSC01393.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/03/DSC01393-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/03/DSC02243-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/03/P1152592-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/03/DSC02217-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/03/RE201030-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/03/P1153228-2-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2021/03/RE201035-2-1024x683.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://twcitystory.pages.dev/taiping-blue/</loc>
+    <lastmod>2026-07-23T02:48:09+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/Taiping-Blue-e1784774726182.jpeg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://twcitystory.pages.dev/xinpu-persimmon-cakes/</loc>
+    <lastmod>2026-07-23T02:07:28+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/P1089812-e1784771235956.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED02898-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED02974-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED02967-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED02900-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED02939-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED02894-1024x684.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/RED03000-1024x684.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://twcitystory.pages.dev/island-memory-linyuan/</loc>
+    <lastmod>2026-07-23T01:12:30+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/island-memory-linyuan-e1784768981932.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://twcitystory.pages.dev/kaohsiung-overpass/</loc>
     <lastmod>2026-07-22T13:43:55+00:00</lastmod>
     <image:image>
@@ -273,7 +343,7 @@
   </url>
   <url>
     <loc>https://twcitystory.pages.dev/milkfish-food-culture/</loc>
-    <lastmod>2026-07-01T09:01:57+00:00</lastmod>
+    <lastmod>2026-07-23T00:06:29+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.pages.dev/wp-content/uploads/2026/07/milkfish-food-culture.jpg</image:loc>
     </image:image>
