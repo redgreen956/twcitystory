@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="https://https://twcitystory.com/sitemap-stylesheet.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://twcitystory.com/sitemap-stylesheet.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://https://twcitystory.com/shorts/</loc>
+    <loc>https://twcitystory.com/shorts/</loc>
     <lastmod>2026-07-23T02:20:26+00:00</lastmod>
   </url>
   <url>
-    <loc>https://https://twcitystory.com/project/</loc>
+    <loc>https://twcitystory.com/project/</loc>
     <lastmod>2026-07-23T03:37:41+00:00</lastmod>
   </url>
   <url>
-    <loc>https://https://twcitystory.com/</loc>
+    <loc>https://twcitystory.com/</loc>
     <lastmod>2026-07-25T04:31:37+00:00</lastmod>
   </url>
   <url>
-    <loc>https://https://twcitystory.com/blog/</loc>
+    <loc>https://twcitystory.com/blog/</loc>
     <lastmod>2026-07-23T03:41:05+00:00</lastmod>
   </url>
   <url>
-    <loc>https://https://twcitystory.com/about/</loc>
+    <loc>https://twcitystory.com/about/</loc>
     <lastmod>2026-07-23T03:37:34+00:00</lastmod>
     <image:image>
-      <image:loc>https://https://twcitystory.com/wp-content/uploads/2026/06/hung-li.jpg</image:loc>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/06/hung-li.jpg</image:loc>
     </image:image>
   </url>
 </urlset>
