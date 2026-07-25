@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="https://twcitystory.pages.dev/sitemap-stylesheet.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://https://twcitystory.com/sitemap-stylesheet.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://twcitystory.pages.dev/post-type-page-sitemap-1.xml</loc>
-    <lastmod>2026-07-25T00:15:56+00:00</lastmod>
+    <loc>https://https://twcitystory.com/post-type-page-sitemap-1.xml</loc>
+    <lastmod>2026-07-25T05:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://twcitystory.pages.dev/post-type-post-sitemap-1.xml</loc>
-    <lastmod>2026-07-25T00:15:56+00:00</lastmod>
+    <loc>https://https://twcitystory.com/post-type-post-sitemap-1.xml</loc>
+    <lastmod>2026-07-25T05:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://twcitystory.pages.dev/taxonomy-type-category-sitemap-1.xml</loc>
-    <lastmod>2026-07-25T00:15:56+00:00</lastmod>
+    <loc>https://https://twcitystory.com/taxonomy-type-category-sitemap-1.xml</loc>
+    <lastmod>2026-07-25T05:47:15+00:00</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://twcitystory.pages.dev/taxonomy-type-post_tag-sitemap-1.xml</loc>
-    <lastmod>2026-07-25T00:15:56+00:00</lastmod>
+    <loc>https://https://twcitystory.com/taxonomy-type-post_tag-sitemap-1.xml</loc>
+    <lastmod>2026-07-25T05:47:15+00:00</lastmod>
   </sitemap>
 </sitemapindex>
