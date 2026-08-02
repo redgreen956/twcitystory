@@ -2,8 +2,18 @@
 <?xml-stylesheet type="text/xsl" href="https://twcitystory.com/sitemap-stylesheet.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcitystory.com/2713-2/</loc>
-    <lastmod>2026-07-31T00:23:50+00:00</lastmod>
+    <loc>https://twcitystory.com/freelancer-freedom/</loc>
+    <lastmod>2026-08-02T03:28:57+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/HL402694.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/HL402694-1024x683.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://twcitystory.com/food-photography-lighting-setup/</loc>
+    <lastmod>2026-08-02T02:59:24+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/food-lighting-setup-2.webp</image:loc>
     </image:image>
@@ -61,7 +71,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/3m-dual-lock/</loc>
-    <lastmod>2026-07-29T14:08:53+00:00</lastmod>
+    <lastmod>2026-08-02T03:11:51+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/IMG_6937.webp</image:loc>
     </image:image>
@@ -86,7 +96,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/checheng-manfeng-set-net-fishery/</loc>
-    <lastmod>2026-07-25T04:24:23+00:00</lastmod>
+    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/P1371256.webp</image:loc>
     </image:image>
@@ -120,7 +130,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/canon-fd-28mm/</loc>
-    <lastmod>2026-07-25T03:54:56+00:00</lastmod>
+    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/Konica-C35_Fujicolor-200_17.webp</image:loc>
     </image:image>
@@ -144,7 +154,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/dashu-sesame-oil/</loc>
-    <lastmod>2026-07-25T02:09:28+00:00</lastmod>
+    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2022/07/Dashu-Sesame-Oil-2.webp</image:loc>
     </image:image>
@@ -179,7 +189,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/kaohsiung-port-travel-2021/</loc>
-    <lastmod>2026-07-23T03:36:27+00:00</lastmod>
+    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2021/03/DSC01393.webp</image:loc>
     </image:image>
@@ -214,7 +224,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/xinpu-persimmon-cakes/</loc>
-    <lastmod>2026-07-23T02:07:28+00:00</lastmod>
+    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/P1089812-e1784771235956.webp</image:loc>
     </image:image>
@@ -249,7 +259,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/kaohsiung-overpass/</loc>
-    <lastmod>2026-07-22T13:43:55+00:00</lastmod>
+    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/RED09042.webp</image:loc>
     </image:image>
@@ -325,7 +335,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/coir-mats/</loc>
-    <lastmod>2026-07-29T14:14:49+00:00</lastmod>
+    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/IMG_6362.jpg</image:loc>
     </image:image>
@@ -395,7 +405,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/liugui-travel-guide/</loc>
-    <lastmod>2026-07-22T10:19:26+00:00</lastmod>
+    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/liugui-travel-8.jpg</image:loc>
     </image:image>
