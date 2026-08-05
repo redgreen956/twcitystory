@@ -2,6 +2,99 @@
 <?xml-stylesheet type="text/xsl" href="https://twcitystory.com/sitemap-stylesheet.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://twcitystory.com/camera-rig/</loc>
+    <lastmod>2026-08-02T08:00:00+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/03/9cb489f6-ec80-4e37-8131-b7ac458f7ab6.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/03/4a3b2855-1d59-490d-ae7c-242af1ecdf39-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/03/GR010740-2-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/03/9cb489f6-ec80-4e37-8131-b7ac458f7ab6-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/03/GR012735-1024x651.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://twcitystory.com/vidafun-v15-hard-case-review/</loc>
+    <lastmod>2026-08-02T07:36:53+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/05/IMG_8395.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/05/IMG_8395-1024x947.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/05/IMG_8401-768x1024.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/05/IMG_8451-768x1024.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/05/GR012742-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/05/6506d839-a939-4009-8432-fcdfeb045a5b-768x1024.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2024/05/c8832e0b-2f0c-4f42-885b-958fe4b3e0ae-768x1024.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://twcitystory.com/kaohsiung-drone-license/</loc>
+    <lastmod>2026-08-02T07:00:58+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/DJI_20250724172559_0031_D.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/DJI_20250724172559_0031_D-1024x576.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/IMG_6734-768x1024.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/IMG_6735-768x1024.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/P1403690-2-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/P1403685-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/P1403690-3-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/P1403690-5-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/P1403691-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/P1403698-1024x683.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/DJI_20251204165208_0484_D-1024x576.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/DJI_20251204165502_0491_D-1024x576.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/08/DJI_20251204165253_0488_D-1024x576.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://twcitystory.com/freelancer-freedom/</loc>
     <lastmod>2026-08-02T03:28:57+00:00</lastmod>
     <image:image>
@@ -224,7 +317,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/xinpu-persimmon-cakes/</loc>
-    <lastmod>2026-08-02T02:57:25+00:00</lastmod>
+    <lastmod>2026-08-02T07:22:02+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2026/07/P1089812-e1784771235956.webp</image:loc>
     </image:image>
@@ -357,7 +450,7 @@
   </url>
   <url>
     <loc>https://twcitystory.com/yancheng-oral-history/</loc>
-    <lastmod>2026-07-06T06:39:44+00:00</lastmod>
+    <lastmod>2026-08-02T07:20:32+00:00</lastmod>
     <image:image>
       <image:loc>https://twcitystory.com/wp-content/uploads/2022/05/yancheng-island-memory-interview.jpeg</image:loc>
     </image:image>
