@@ -2,30 +2,30 @@
 <?xml-stylesheet type="text/xsl" href="https://twcitystory.com/sitemap-stylesheet.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcitystory.com/</loc>
-    <lastmod>2026-07-25T13:06:34+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://twcitystory.com/shorts/</loc>
-    <lastmod>2026-08-08T02:32:53+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://twcitystory.com/project/</loc>
-    <lastmod>2026-07-23T03:37:41+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://twcitystory.com/film-portfolio/</loc>
-    <lastmod>2026-08-08T23:05:58+00:00</lastmod>
+    <loc>https://twcitystory.com/about/</loc>
+    <lastmod>2026-07-23T03:37:34+00:00</lastmod>
+    <image:image>
+      <image:loc>https://twcitystory.com/wp-content/uploads/2026/06/hung-li.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://twcitystory.com/blog/</loc>
     <lastmod>2026-07-29T14:10:35+00:00</lastmod>
   </url>
   <url>
-    <loc>https://twcitystory.com/about/</loc>
-    <lastmod>2026-07-23T03:37:34+00:00</lastmod>
-    <image:image>
-      <image:loc>https://twcitystory.com/wp-content/uploads/2026/06/hung-li.jpg</image:loc>
-    </image:image>
+    <loc>https://twcitystory.com/film-portfolio/</loc>
+    <lastmod>2026-08-09T02:53:34+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://twcitystory.com/project/</loc>
+    <lastmod>2026-07-23T03:37:41+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://twcitystory.com/shorts/</loc>
+    <lastmod>2026-08-08T02:32:53+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://twcitystory.com/</loc>
+    <lastmod>2026-07-25T13:06:34+00:00</lastmod>
   </url>
 </urlset>

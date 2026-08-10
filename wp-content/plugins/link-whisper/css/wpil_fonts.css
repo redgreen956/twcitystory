@@ -1,0 +1,48 @@
+/* Import fonts *//*
+@import 'https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;1,400;1,700&display=swap';
+.wpil_styles *,
+.wpil_licensing_wrap *,
+.swal-overlay * {
+	font-family: 'Barlow', sans-serif;
+}*/
+
+@font-face {
+    font-family: 'Barlow';
+    src: url('https://twcitystory.com/wp-content/plugins/link-whisper/css/fonts/Barlow/Barlow-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url('https://twcitystory.com/wp-content/plugins/link-whisper/css/fonts/Barlow/Barlow-SemiBold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url('https://twcitystory.com/wp-content/plugins/link-whisper/css/fonts/Barlow/Barlow-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Funnel Sans';
+    src: url('https://twcitystory.com/wp-content/plugins/link-whisper/css/fonts/Funnel_Sans/FunnelSans-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Funnel Sans';
+    src: url('https://twcitystory.com/wp-content/plugins/link-whisper/css/fonts/Funnel_Sans/FunnelSans-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 800;
+    font-style: italic;
+}
+
+.wpil_styles *,
+.wpil_licensing_wrap *,
+.swal-overlay * {
+	font-family: 'Funnel Sans', sans-serif;
+}
