@@ -96,13 +96,14 @@ const useOnboardingAuth = ( { skipCheck = false } = {} ) => {
 		}
 	};
 
-	// On mount, check real auth status from server in case the token was saved
-	// after the page loaded (e.g. OAuth redirect back to onboarding with ?access_key).
-	useEffect( () => {
-		if ( skipCheck || isAuthenticated ) {
+	// Re-check the real auth status from the server. The auth flow completes in
+	// a separate popup/tab that saves the token and then closes/redirects, so
+	// the onboarding screen must refresh its status when it regains focus —
+	// otherwise it keeps showing "Connect" until the step is remounted.
+	const refreshAuthStatus = () => {
+		if ( authStore.isAuthenticated ) {
 			return;
 		}
-
 		getAuth()
 			.then( ( response ) => {
 				if ( response?.success && ! response?.auth_url ) {
@@ -110,6 +111,36 @@ const useOnboardingAuth = ( { skipCheck = false } = {} ) => {
 				}
 			} )
 			.catch( () => {} );
+	};
+
+	// On mount, check real auth status from the server in case the token was
+	// saved after the page loaded (e.g. OAuth redirect back with ?access_key),
+	// and re-check whenever the window regains focus / becomes visible — this is
+	// when the user returns from the auth popup that saved the token.
+	useEffect( () => {
+		if ( skipCheck ) {
+			return;
+		}
+
+		refreshAuthStatus();
+
+		const handleVisibility = () => {
+			if ( document.visibilityState === 'visible' ) {
+				refreshAuthStatus();
+			}
+		};
+
+		window.addEventListener( 'focus', refreshAuthStatus );
+		document.addEventListener( 'visibilitychange', handleVisibility );
+
+		return () => {
+			window.removeEventListener( 'focus', refreshAuthStatus );
+			document.removeEventListener(
+				'visibilitychange',
+				handleVisibility
+			);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [] );
 
 	return {

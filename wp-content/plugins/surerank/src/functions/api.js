@@ -189,6 +189,16 @@ export const getAuth = () => {
 };
 
 /**
+ * Fetch bulk content generation batch status
+ * @return {Promise<Object>} The batch status
+ */
+export const batchStatus = () => {
+	return apiFetch( {
+		path: `${ API_BASE_URL }/content-generation/batch-status`,
+	} );
+};
+
+/**
  * Save AI access token
  * @param {string} accessKey The access token
  * @return {Promise<Object>} The response from the API

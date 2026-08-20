@@ -452,26 +452,36 @@ const SchemaTab = ( { postMetaData, globalDefaults, updatePostMetaData } ) => {
 
 	const handleRecommendSchemas = async () => {
 		const snapshot = getEditorData();
+		const isTaxonomy = window?.surerank_seo_popup?.is_taxonomy === '1';
 		const postType =
 			wp?.data?.select( 'core/editor' )?.getCurrentPostType?.() ||
 			surerank_seo_popup?.post_type ||
 			'post';
 		// On listing pages there is no editor, so getEditorData() returns empty
-		// title/content. Fall back to the post's resolved meta variables, which the
-		// store already loads for the active post when its SEO popup is opened.
+		// title/content. Fall back to the resolved meta variables, which the
+		// store already loads for the active post or term when its SEO popup is
+		// opened. Term screens expose their values as term_* variables.
 		const variablesArray = flat(
 			staticSelect( STORE_NAME ).getVariables()
 		);
-		const postTitle = snapshot?.title || variablesArray?.title || '';
-		const postContent =
-			snapshot?.postContent || variablesArray?.content || '';
+		const postTitle = isTaxonomy
+			? variablesArray?.term_title || ''
+			: snapshot?.title || variablesArray?.title || '';
+		const postContent = isTaxonomy
+			? variablesArray?.term_description || ''
+			: snapshot?.postContent || variablesArray?.content || '';
 
 		if ( ! postTitle && ! postContent ) {
 			setRecommendationsError(
-				__(
-					'Please add post title or content first to get schema recommendations.',
-					'surerank'
-				)
+				isTaxonomy
+					? __(
+							'Please add a term name or description first to get schema recommendations.',
+							'surerank'
+					  )
+					: __(
+							'Please add post title or content first to get schema recommendations.',
+							'surerank'
+					  )
 			);
 			setSchemaRecommendations( [] );
 			return;

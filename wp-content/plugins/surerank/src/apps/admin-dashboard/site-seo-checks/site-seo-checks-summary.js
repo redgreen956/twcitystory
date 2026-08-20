@@ -7,10 +7,11 @@ import SiteSeoChecksTableSkeleton, {
 	SiteSeoChecksInnerTableSkeleton,
 } from './site-seo-checks-table-skeleton';
 import SiteSeoChecksDrawer from './site-seo-checks-drawer';
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw, Sparkles } from 'lucide-react';
 import { useRunSeoChecks } from './use-run-seo-checks';
 import { cn } from '@Functions/utils';
 import SaveAuthToken from '@/global/components/save-auth-token';
+import FixButton from '@GlobalComponents/fix-button';
 
 // Title section component. Defined at module scope (not inside the parent)
 // so its identity is stable across re-renders; otherwise the header subtree —
@@ -38,6 +39,22 @@ const SiteSeoChecksTitle = ( { isLoading, handleRunChecksAgain } ) => {
 						handleRunChecksAgain={ handleRunChecksAgain }
 					/>
 				) ) }
+				{ /*
+				 * Free "Fix It All For Me" — shown only when Pro hasn't mounted
+				 * its own header action (its real Fix It All For Me wizard).
+				 * Behaves like the free per-check "Fix It For Me": a locked
+				 * FixButton that surfaces the Pro upgrade nudge.
+				 */ }
+				{ headerActionComponents.length === 0 && (
+					<FixButton
+						buttonLabel={ __( 'Fix It All For Me', 'surerank' ) }
+						hidden={ false }
+						size="sm"
+						icon={ <Sparkles className="size-4" /> }
+						utmContent="fix_it_all_for_me_button"
+						tooltipProps={ { className: 'z-999999' } }
+					/>
+				) }
 				<Button
 					variant="outline"
 					size="sm"

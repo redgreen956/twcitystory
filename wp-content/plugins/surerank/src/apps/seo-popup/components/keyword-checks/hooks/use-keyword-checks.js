@@ -11,7 +11,10 @@ import {
 	checkKeywordInUrl,
 	checkKeywordInContent,
 } from '../analyzer/keyword-analyzer';
-import { isUserContext } from '@SeoPopup/components/page-seo-checks/analyzer/utils/page-builder';
+import {
+	isUserContext,
+	isPageBuilderActive,
+} from '@SeoPopup/components/page-seo-checks/analyzer/utils/page-builder';
 
 export const useKeywordChecks = () => {
 	const { setPageSeoCheck } = useDispatch( STORE_NAME );
@@ -105,7 +108,9 @@ export const useKeywordChecks = () => {
 	useLayoutEffect( () => {
 		// User context has no editor content — keyword checks come from the
 		// server (/checks/user analyzes the author bio), not live computation.
-		if ( ! settingsLoaded || isUserContext() ) {
+		// Page-builder content (e.g. TagDiv shortcodes) is not human-readable
+		// in the editor either, so keyword checks stay server-computed there.
+		if ( ! settingsLoaded || isUserContext() || isPageBuilderActive() ) {
 			return;
 		}
 		const snapshot = getEditorData();
@@ -137,7 +142,7 @@ export const useKeywordChecks = () => {
 
 	// subscribe to content changes.
 	useLayoutEffect( () => {
-		if ( ! settingsLoaded || isUserContext() ) {
+		if ( ! settingsLoaded || isUserContext() || isPageBuilderActive() ) {
 			return;
 		}
 

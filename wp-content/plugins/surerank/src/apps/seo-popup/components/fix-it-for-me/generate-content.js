@@ -9,10 +9,19 @@ import { STORE_NAME } from '@Store/constants';
 import {
 	PROCESS_STATUSES,
 	CONTENT_GENERATION_MAPPING,
+	COMBINED_META_TYPE,
+	COMBINED_META_FIELD_KEYS,
+	isCombinedMetaField,
 } from '@Global/constants';
 import { generateContent as generateContentAPI } from '@Functions/api';
 import ContentGenerationError from '@GlobalComponents/content-generation-error';
 import useFixPageSeoCheck from './hooks/useFixPageSeoCheck';
+
+// Session flag: once the SaaS reports it cannot produce a combined response
+// (combined_meta unsupported / not seeded), skip the combined request for the
+// rest of the editor session so each field does not repeat a failed combined
+// call and burn a second rate-limit hit.
+let combinedMetaUnsupported = false;
 
 const GenerateContent = ( props ) => {
 	const { updateAppSettings } = useDispatch( STORE_NAME );
@@ -61,8 +70,11 @@ const GenerateContent = ( props ) => {
 		onProgress,
 	} );
 
-	// Generate content using the real API
-	const generateContent = async () => {
+	// Generate content using the real API.
+	// forceSingle bypasses the combined request so an explicit Regenerate only
+	// refreshes the field the user is viewing, leaving the other cached fields
+	// intact.
+	const generateContent = async ( { forceSingle = false } = {} ) => {
 		if ( status === PROCESS_STATUSES.IN_PROGRESS ) {
 			return; // Prevent multiple simultaneous requests
 		}
@@ -106,33 +118,157 @@ const GenerateContent = ( props ) => {
 				checkType === 'taxonomy' ||
 				window?.surerank_seo_popup?.is_taxonomy === '1';
 
-			// Call the actual API
+			// Meta box fields (title/description/social) share one combined
+			// request so all four are generated at once instead of per field.
+			// Regenerate (forceSingle) targets only the active field.
+			const useCombined =
+				isCombinedMetaField( contentType ) &&
+				! forceSingle &&
+				! combinedMetaUnsupported;
+
+			// Turn a list of suggestion strings into unique UI items,
+			// dropping anything that is not a usable non-empty string.
+			const toItems = ( list, seed ) =>
+				( Array.isArray( list ) ? list : [] )
+					.filter( ( item ) => typeof item === 'string' && item.trim() )
+					.map( ( item, index ) => ( {
+						id: seed + index,
+						text: item,
+					} ) );
+
+			if ( useCombined ) {
+				let combinedResponse;
+				try {
+					combinedResponse = await generateContentAPI(
+						COMBINED_META_TYPE,
+						id,
+						isTermPage
+					);
+					if ( ! combinedResponse?.success ) {
+						throw combinedResponse;
+					}
+				} catch ( combinedError ) {
+					// Only fall back when the SaaS responded but could not produce
+					// combined content (combined_meta unsupported / not seeded).
+					// Every other error (credit limits, auth, network, malformed
+					// output) is preserved as-is, so the right screen shows and we
+					// do not spend a second request on a genuine failure.
+					if (
+						combinedError?.code !== 'content_generation_error'
+					) {
+						throw combinedError;
+					}
+					// Remember for the session so other fields skip the combined
+					// request and go straight to single-field (no repeated second
+					// rate-limit hit per field).
+					combinedMetaUnsupported = true;
+
+					const fallbackResponse = await generateContentAPI(
+						mappedType,
+						id,
+						isTermPage
+					);
+					if ( ! fallbackResponse?.success ) {
+						throw fallbackResponse;
+					}
+					const fallbackItems = toItems(
+						fallbackResponse.content,
+						Date.now()
+					);
+					if ( ! fallbackItems.length ) {
+						throw {
+							message: __(
+								'The AI response was empty. Please try again.',
+								'surerank'
+							),
+							code: 'invalid_ai_response',
+						};
+					}
+					updateAppSettings( {
+						generateContentProcess: PROCESS_STATUSES.COMPLETED,
+						generatedContents: {
+							...allGeneratedContents,
+							[ currentKey ]: fallbackItems,
+						},
+					} );
+					return;
+				}
+
+				// response.content is a keyed map of variation lists. Validate the
+				// full contract before trusting it: every expected key must be a
+				// non-empty array containing at least one usable string. A partial
+				// or malformed map is a retryable failure, not a silent empty
+				// "completed" state.
+				const combined = combinedResponse.content || {};
+				const outputKeys = [
+					...new Set(
+						COMBINED_META_FIELD_KEYS.map(
+							( key ) => CONTENT_GENERATION_MAPPING[ key ]
+						)
+					),
+				];
+				const isValidCombined = outputKeys.every(
+					( key ) =>
+						Array.isArray( combined[ key ] ) &&
+						combined[ key ].some(
+							( item ) =>
+								typeof item === 'string' && item.trim()
+						)
+				);
+				if ( ! isValidCombined ) {
+					throw {
+						message: __(
+							'The AI response was incomplete. Please try again.',
+							'surerank'
+						),
+						code: 'invalid_combined_response',
+					};
+				}
+
+				// Distribute each list to every field it covers so switching
+				// fields reuses this single response without another request.
+				let uniqueId = Date.now();
+				const distributedContents = { ...allGeneratedContents };
+				COMBINED_META_FIELD_KEYS.forEach( ( key ) => {
+					const items = toItems(
+						combined[ CONTENT_GENERATION_MAPPING[ key ] ],
+						uniqueId
+					);
+					uniqueId += items.length; // keep ids unique across fields
+					distributedContents[ key ] = items;
+				} );
+
+				updateAppSettings( {
+					generateContentProcess: PROCESS_STATUSES.COMPLETED,
+					generatedContents: distributedContents,
+				} );
+				return;
+			}
+
+			// Single-field request (non-combined checks/fields).
 			const response = await generateContentAPI(
 				mappedType,
 				id,
 				isTermPage
 			);
-
-			// Handle successful response
 			if ( ! response?.success ) {
 				throw response;
 			}
-
-			const transformedContent = response.content.map(
-				( item, index ) => ( {
-					id: Date.now() + index, // Use timestamp to ensure unique IDs
-					text: item,
-				} )
-			);
-
-			// Replace existing content with new content (don't append)
-			const updatedContent = transformedContent;
-
+			const singleItems = toItems( response.content, Date.now() );
+			if ( ! singleItems.length ) {
+				throw {
+					message: __(
+						'The AI response was empty. Please try again.',
+						'surerank'
+					),
+					code: 'invalid_ai_response',
+				};
+			}
 			updateAppSettings( {
 				generateContentProcess: PROCESS_STATUSES.COMPLETED,
 				generatedContents: {
 					...allGeneratedContents,
-					[ currentKey ]: updatedContent,
+					[ currentKey ]: singleItems,
 				},
 			} );
 		} catch ( error ) {
@@ -152,7 +288,8 @@ const GenerateContent = ( props ) => {
 	};
 
 	const handleRegenerate = () => {
-		generateContent();
+		// Regenerate only the field being viewed, not every combined field.
+		generateContent( { forceSingle: true } );
 	};
 
 	// Handle "Use Me" action for generated content

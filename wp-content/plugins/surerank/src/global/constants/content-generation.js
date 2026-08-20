@@ -39,6 +39,25 @@ export const CONTENT_GENERATION_MAPPING = Object.freeze( {
 	...FIELD_CONTENT_GENERATION_MAPPING,
 } );
 
+// SaaS content type that returns page title, page description, social title and
+// social description variations in a single response (one request instead of four).
+export const COMBINED_META_TYPE = 'combined_meta';
+
+// Meta box field keys covered by the combined request. Each maps (via
+// CONTENT_GENERATION_MAPPING) to one of the keys returned inside the combined
+// response, so a single generation can populate every field's suggestions.
+export const COMBINED_META_FIELD_KEYS = Object.freeze( [
+	'page_title',
+	'page_description',
+	'facebook_title',
+	'facebook_description',
+	'twitter_title',
+	'twitter_description',
+] );
+
+export const isCombinedMetaField = ( fieldKey ) =>
+	COMBINED_META_FIELD_KEYS.includes( fieldKey ?? '' );
+
 export const PAGE_SEO_CHECKS_ID_TO_STATE_MAPPING = {
 	search_engine_title: 'page_title',
 	search_engine_description: 'page_description',

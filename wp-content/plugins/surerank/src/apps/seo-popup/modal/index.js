@@ -228,8 +228,12 @@ const SeoModal = ( props ) => {
 	}, [ initialized, updateModalState ] );
 
 	const closeModal = useCallback( () => {
+		// Reset the AI suggestion cache on close so a reopened popup regenerates
+		// against the current content instead of serving suggestions built from
+		// stale inputs (content/focus keyword edited between sessions).
+		updateAppSettings( { generatedContents: {} } );
 		updateModalState( false );
-	}, [ updateModalState ] );
+	}, [ updateAppSettings, updateModalState ] );
 
 	const RenderScreen = useMemo( () => {
 		if ( appSettings?.currentScreen ) {

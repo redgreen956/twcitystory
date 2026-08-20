@@ -7,6 +7,7 @@ import {
 import { STORE_NAME as storeName } from '@Store/constants';
 import { cleanContent } from '@Functions/utils';
 import { getClassicEditorPermalink } from './index';
+import { isPageBuilderActive } from '@SeoPopup/components/page-seo-checks/analyzer/utils/page-builder';
 
 /* global elementor */
 
@@ -31,7 +32,12 @@ export const GutenbergData = ( ChildComponent ) => {
 			dispatchToSureRankStore.updatePostDynamicData( {
 				title: dynamicData.postTitle,
 				excerpt: dynamicData.postExcerpt,
-				content: cleanContent( dynamicData.postContent ),
+				// On page-builder content (e.g. TagDiv shortcode soup) the raw
+				// editor content is not human-readable; leave it empty so
+				// %content% falls back to the server-rendered variable value.
+				content: isPageBuilderActive()
+					? ''
+					: cleanContent( dynamicData.postContent ),
 			} );
 		}, [
 			dynamicData.postTitle,

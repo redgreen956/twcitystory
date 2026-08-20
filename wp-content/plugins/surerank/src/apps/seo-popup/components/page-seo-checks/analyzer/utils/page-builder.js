@@ -280,6 +280,10 @@ export const isBreakdanceBuilder = () => {
 	return !! surerank_globals?.is_breakdance;
 };
 
+export const isTagDivBuilder = () => {
+	return !! surerank_globals?.is_tagdiv;
+};
+
 export const isAvadaBuilder = () => {
 	// Check for Fusion Builder frontend context
 	if (
@@ -328,6 +332,7 @@ export const isPageBuilderActive = () => {
 	return (
 		isBricksBuilder() ||
 		isBreakdanceBuilder() ||
+		isTagDivBuilder() ||
 		isElementorBuilder() ||
 		isAvadaBuilder() ||
 		// Consider frontend as page builder active as page requires refresh.

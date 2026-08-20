@@ -7,7 +7,6 @@ import {
 	Input,
 	Text,
 	DatePicker,
-	TextArea,
 } from '@bsf/force-ui';
 import {
 	editorValueToString,
@@ -16,6 +15,10 @@ import {
 } from '@Functions/utils';
 import { Trash, Plus, Info, Calendar } from 'lucide-react';
 import { generateUUID } from '@AdminComponents/schema-utils/utils';
+import {
+	jsonLdToEditorState,
+	editorStateToJsonLdString,
+} from '@AdminComponents/schema-utils/custom-json-ld';
 import { SeoPopupTooltip } from '@AdminComponents/tooltip';
 import FloatingPopover from '@AdminComponents/floating-popover';
 import { useState, useMemo } from '@wordpress/element';
@@ -235,6 +238,21 @@ export const renderCloneableGroupField = ( {
 	renderHelpTextFunction = null,
 } ) => {
 	let existingValues = getFieldValue( field.id ) || [];
+
+	// Seed a legacy scalar value (saved before the field became a group) into
+	// the subfield named by the definition's legacyScalarField, instead of discarding it.
+	if (
+		typeof existingValues === 'string' &&
+		existingValues.trim() !== '' &&
+		field.legacyScalarField
+	) {
+		existingValues = [
+			{
+				...createDefaultItem( field.fields ),
+				[ field.legacyScalarField ]: existingValues,
+			},
+		];
+	}
 
 	// Ensure existingValues is always an array
 	if ( ! Array.isArray( existingValues ) ) {
@@ -716,6 +734,7 @@ export function renderFieldCommon( {
 	}
 
 	const currentFieldValue = getFieldValue( field.id ) || field.std || '';
+	const isCustomJsonLdField = field?.id === 'custom_json_ld';
 
 	const uniqueKey = parentFieldId
 		? `${ parentFieldId }-${ itemIndex }-${ field.id }`
@@ -915,18 +934,63 @@ export function renderFieldCommon( {
 		}
 
 		case 'Textarea': {
+			if ( isCustomJsonLdField ) {
+				return (
+					<div className="w-full">
+						<EditorInput
+							key={ uniqueKey }
+							by="label"
+							trigger="@"
+							// Allow the "@" trigger after a space OR a double
+							// quote so smart tags can be inserted directly
+							// inside quoted JSON values (e.g. "@site_name")
+							// without a leading blank space.
+							triggerRegex={ /(^|[\s("])(@(\w{0,75}))$/ }
+							options={ variableSuggestions }
+							placeholder={ placeholder }
+							defaultValue={ jsonLdToEditorState(
+								currentFieldValue,
+								variableSuggestions
+							) }
+							onChange={ ( editorState ) => {
+								onFieldChange(
+									field.id,
+									editorStateToJsonLdString(
+										editorState.toJSON()
+									)
+								);
+							} }
+							className="whitespace-pre-wrap break-words font-mono text-sm min-h-72 max-h-96 overflow-y-auto"
+							wrapperClassName="items-start [&>ul>li]:capitalize"
+						/>
+					</div>
+				);
+			}
+
+			// Same editor as the default branch, just taller to start. Textarea
+			// fields hold prose, so they get variable suggestions too, and the
+			// editor grows past the initial height as content is added.
 			return (
 				<div className="w-full">
-					<TextArea
+					<EditorInput
 						key={ uniqueKey }
-						value={ currentFieldValue }
-						onChange={ ( value ) =>
-							onFieldChange( field.id, value )
-						}
-						rows={ field.rows || 8 }
-						size="md"
-						className="w-full font-mono text-sm"
+						by="label"
+						trigger="@"
+						options={ variableSuggestions }
 						placeholder={ placeholder }
+						defaultValue={ stringValueToFormatJSON(
+							currentFieldValue,
+							variableSuggestions,
+							'value'
+						) }
+						onChange={ ( editorState ) => {
+							onFieldChange(
+								field.id,
+								editorValueToString( editorState.toJSON() )
+							);
+						} }
+						className="flex-grow min-h-[4.5rem]"
+						wrapperClassName="items-start [&>ul>li]:capitalize"
 					/>
 				</div>
 			);
@@ -962,8 +1026,21 @@ export function renderFieldCommon( {
 }
 
 export function renderHelpText( field ) {
-	if ( field?.type !== 'Text' ) {
+	const isCustomJsonLdField = field?.id === 'custom_json_ld';
+
+	if ( field?.type !== 'Text' && ! isCustomJsonLdField ) {
 		return null;
+	}
+
+	if ( field?.type === 'Textarea' ) {
+		return (
+			<Text size={ 14 } weight={ 400 } color="help">
+				{ __(
+					'Type @ to view variable suggestions. Smart tags work only inside quoted JSON string values.',
+					'surerank'
+				) }
+			</Text>
+		);
 	}
 
 	return (

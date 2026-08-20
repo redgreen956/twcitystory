@@ -45,12 +45,16 @@ const McpConnectionConfig = () => {
 			WP_API_URL: serverUrl,
 			WP_API_USERNAME: username,
 			WP_API_PASSWORD: 'your-application-password',
+			// The proxy defaults to its OAuth flow; Application Passwords need it off.
+			OAUTH_ENABLED: 'false',
 		},
 	};
 
+	// VS Code expects a top-level "servers" key; every other client uses "mcpServers".
+	const [ configFormat, setConfigFormat ] = useState( 'mcpServers' );
 	const mcpConfig = JSON.stringify(
 		{
-			mcpServers: {
+			[ configFormat ]: {
 				[ serverName ]: mcpServerEntry,
 			},
 		},
@@ -72,25 +76,23 @@ Steps:
 
 1. Ask which AI client I use if unsure (Claude Code, Claude Desktop, Cursor, Windsurf, VS Code, ChatGPT, etc.) and what OS I'm on (macOS, Windows, Linux). Both are needed to locate the correct config file.
 
-2. Ask for my Application Password upfront (before proceeding to any other steps). The placeholder in the JSON above says "your-application-password". Replace it with what I provide. If I don't have one, direct me to: ${ applicationPasswordsUrl }
+2. If my client is ChatGPT: stop here, before asking for anything else. ChatGPT connectors only support OAuth and this WordPress site does not provide OAuth yet, so there is no working ChatGPT setup — tell me that clearly instead of improvising one. This config works with MCP clients that support HTTP Basic auth (Claude Code, Claude Desktop, Cursor, Windsurf, VS Code).
 
-3. If using ChatGPT: go to Settings → Connectors → Add Connector and paste this URL as the Connector URL:
-   ${ serverUrl }
-   Use HTTP Basic Auth with my WordPress username and an Application Password.
-   If I don't have an Application Password, direct me to: ${ applicationPasswordsUrl }
-   See also: https://developers.openai.com/apps-sdk/deploy/connect-chatgpt
-   Skip steps 3 to 7.
+3. Application Password: by default, keep the "your-application-password" placeholder, finish the setup, and at the end tell me exactly which file and line to edit myself — do not ask me to paste the password into this conversation. Only substitute a real value if I volunteer it unprompted. If I don't have one yet, direct me to: ${ applicationPasswordsUrl }
 
 4. Locate the correct MCP config file for my client and OS. Verify the path exists on my system. Do not guess. If it doesn't exist, confirm the path with me before creating.
 
-5. Merge into existing config if present. Do NOT overwrite other MCP server entries. For VS Code, use "servers" key instead of "mcpServers".
+5. Merge into existing config if present. Do NOT overwrite other MCP server entries. For VS Code, use "servers" key instead of "mcpServers". Keep "OAUTH_ENABLED": "false" — the proxy defaults to an OAuth flow otherwise, and this site authenticates with an Application Password.
 
-6. Detect my Node.js setup by running: which npx && node --version && echo $PATH
+6. Detect my Node.js setup.
+   - macOS/Linux: which npx && node --version && echo $PATH
+   - Windows (PowerShell): Get-Command npx | Select-Object -ExpandProperty Source; node --version; $env:Path
+   - Windows (cmd): where npx && node --version && echo %PATH%
    - If you can run terminal commands directly (e.g. Claude Code, Cursor, Windsurf, VS Code agent), run this yourself.
-   - If you are sandboxed and cannot run terminal commands (e.g. Claude Desktop, ChatGPT), ask me to run it and paste the output back.
-   - Requires Node.js v20 or v22. If below v20 or v23+, warn me and stop.
-   - Set "command" to the full npx path from "which npx". Never use a path from your own environment.
-   - Add "PATH" to "env" using the actual $PATH output. Include the node bin directory, Homebrew paths (/opt/homebrew/bin, /usr/local/bin), and system paths. MCP servers don't inherit the user's shell PATH, so include everything needed for node, npx, and git.
+   - If you are sandboxed and cannot run terminal commands (e.g. Claude Desktop), ask me to run it and paste the output back.
+   - Requires Node.js v20 or newer (an LTS version is safest). If below v20, warn me and stop.
+   - Set "command" to the full npx path from the output above. Never use a path from your own environment.
+   - Add "PATH" to "env" using my actual PATH output. Include the node bin directory, Homebrew paths (/opt/homebrew/bin, /usr/local/bin), and system paths. MCP servers don't inherit the user's shell PATH, so include everything needed for node, npx, and git.
 
 7. If you're sandboxed (e.g., Claude Desktop) and can't write to the real filesystem, don't write to a sandbox path. Instead, output the final JSON in a code block with the file path so I can save it manually.
 
@@ -180,7 +182,11 @@ Steps:
 							<span className="font-medium">
 								{ __( 'VS Code', 'surerank' ) }
 							</span>
-							{ ': .vscode/mcp.json' }
+							{ ': .vscode/mcp.json ' }
+							{ __(
+								'(use a top-level "servers" key instead of "mcpServers")',
+								'surerank'
+							) }
 						</li>
 						<li>
 							<span className="font-medium">
@@ -188,18 +194,9 @@ Steps:
 							</span>
 							{ ': ' }
 							{ __(
-								'go to Settings → Connectors → Add Connector, paste the endpoint URL, and use your WordPress username + Application Password.',
+								'Not supported yet - ChatGPT connectors require OAuth and do not accept Application Passwords.',
 								'surerank'
-							) }{ ' ' }
-							<a
-								href="https://developers.openai.com/apps-sdk/deploy/connect-chatgpt"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="cursor-pointer text-link-primary hover:text-link-primary-hover inline-flex items-center gap-1"
-							>
-								{ __( 'Learn More', 'surerank' ) }
-								<ExternalLink size={ 14 } />
-							</a>
+							) }
 						</li>
 					</ul>
 				</li>
@@ -210,28 +207,54 @@ Steps:
 					) }
 				</li>
 			</ol>
-			<Tabs activeItem={ activeTab }>
-				<Tabs.Group
-					className="w-max whitespace-nowrap bg-background-secondary"
-					activeItem={ activeTab }
-					onChange={ ( { value } ) => {
-						setActiveTab( value?.slug || value );
-						setCopied( false );
-						setPromptCopied( false );
-					} }
-					variant="rounded"
-					size="xs"
-				>
-					<Tabs.Tab
-						slug="surerank-only"
-						text={ __( 'SureRank Only', 'surerank' ) }
-					/>
-					<Tabs.Tab
-						slug="global"
-						text={ __( 'Global', 'surerank' ) }
-					/>
-				</Tabs.Group>
-			</Tabs>
+			<div className="flex items-center gap-3 flex-wrap">
+				<Tabs activeItem={ activeTab }>
+					<Tabs.Group
+						className="w-max whitespace-nowrap bg-background-secondary"
+						activeItem={ activeTab }
+						onChange={ ( { value } ) => {
+							setActiveTab( value?.slug || value );
+							setCopied( false );
+							setPromptCopied( false );
+						} }
+						variant="rounded"
+						size="xs"
+					>
+						<Tabs.Tab
+							slug="surerank-only"
+							text={ __( 'SureRank Only', 'surerank' ) }
+						/>
+						<Tabs.Tab
+							slug="global"
+							text={ __( 'Global', 'surerank' ) }
+						/>
+					</Tabs.Group>
+				</Tabs>
+				<Tabs activeItem={ configFormat }>
+					<Tabs.Group
+						className="w-max whitespace-nowrap bg-background-secondary"
+						activeItem={ configFormat }
+						onChange={ ( { value } ) => {
+							setConfigFormat( value?.slug || value );
+							setCopied( false );
+						} }
+						variant="rounded"
+						size="xs"
+					>
+						<Tabs.Tab
+							slug="mcpServers"
+							text={ __(
+								'Claude / Cursor / Windsurf',
+								'surerank'
+							) }
+						/>
+						<Tabs.Tab
+							slug="servers"
+							text={ __( 'VS Code', 'surerank' ) }
+						/>
+					</Tabs.Group>
+				</Tabs>
+			</div>
 			<div
 				className="relative rounded-lg"
 				style={ { backgroundColor: '#1c1331' } }

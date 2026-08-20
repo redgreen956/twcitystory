@@ -19,7 +19,10 @@ import {
 	checkBrokenLinks,
 	checkCanonicalUrl,
 } from '../components/page-seo-checks/analyzer';
-import { parseContent } from '../components/page-seo-checks/analyzer/utils';
+import {
+	getContentRoot,
+	getContentSignature,
+} from '../components/page-seo-checks/analyzer/utils';
 import { STORE_NAME } from '@Store/constants';
 import replacement from '@Functions/replacement';
 import { flat } from '@Functions/variables';
@@ -106,7 +109,7 @@ const usePageChecks = () => {
 					checkCanonicalUrl( canonical ),
 				] );
 			}
-			const doc = parseContent( snapshot.postContent );
+			const doc = getContentRoot( snapshot.postContent );
 			const immediateChecks = await Promise.all( [
 				await checkImageAlt( doc ),
 				await checkMediaPresence( doc ),
@@ -138,8 +141,16 @@ const usePageChecks = () => {
 		},
 		[]
 	);
+	// Dynamic blocks render in the canvas after the raw content is available,
+	// so the snapshot includes a canvas signature to re-run checks when the
+	// rendered content changes without a raw-content change.
+	const getChecksSnapshot = () => ( {
+		...getEditorData(),
+		contentSignature: getContentSignature(),
+	} );
+
 	const start = async () => {
-		const snapshot = getEditorData();
+		const snapshot = getChecksSnapshot();
 		await runChecks(
 			snapshot,
 			metaData,
@@ -186,7 +197,7 @@ const usePageChecks = () => {
 			return;
 		}
 		const updateChecks = debounce( async () => {
-			const snapshot = getEditorData();
+			const snapshot = getChecksSnapshot();
 			if (
 				! isEqual( lastSnapshot.current, snapshot ) ||
 				! isEqual( lastMeta.current, metaData )

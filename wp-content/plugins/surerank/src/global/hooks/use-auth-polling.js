@@ -111,21 +111,45 @@ const useAuthPolling = (
 		);
 
 		if ( popupWindowRef.current ) {
-			checkClosedIntervalRef.current = setInterval( () => {
-				if ( popupWindowRef.current?.closed ) {
-					popupClosedRef.current = true;
+			checkClosedIntervalRef.current = setInterval( async () => {
+				if ( ! popupWindowRef.current?.closed ) {
+					return;
+				}
 
-					// Stop polling immediately when popup is closed
-					stopPolling();
-					toast.error(
-						__(
-							'Authentication cancelled. Please try again.',
-							'surerank'
-						)
-					);
-					if ( onAuthFailure ) {
-						onAuthFailure();
+				popupClosedRef.current = true;
+
+				// Stop the timers immediately once the popup is gone.
+				stopPolling();
+
+				// The popup completes auth (saves the token) and only then
+				// closes itself after a short delay, so it may close before a
+				// poll tick confirms success. Do one final status check before
+				// treating the close as a cancellation — otherwise a successful
+				// connection is wrongly reported as cancelled and the UI stays
+				// on "Connect" until the screen is remounted.
+				try {
+					const response = await getAuth();
+					if ( response?.success && ! response?.auth_url ) {
+						if ( onAuthSuccess ) {
+							onAuthSuccess();
+						}
+						toast.success(
+							__( 'Authentication successful!', 'surerank' )
+						);
+						return;
 					}
+				} catch ( error ) {
+					// Fall through to the cancellation path below.
+				}
+
+				toast.error(
+					__(
+						'Authentication cancelled. Please try again.',
+						'surerank'
+					)
+				);
+				if ( onAuthFailure ) {
+					onAuthFailure();
 				}
 			}, 1000 );
 		}

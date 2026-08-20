@@ -1,14 +1,22 @@
 import { __ } from '@wordpress/i18n';
 import { createRoot, memo, useEffect, useRef } from '@wordpress/element';
-import { applyFilters } from '@wordpress/hooks';
 import { Badge } from '@bsf/force-ui';
 import { BarChart } from 'lucide-react';
 import { useSuspenseSelect, resolveSelect, dispatch } from '@wordpress/data';
 import RenderQueue from '@Functions/render-queue';
 import { STORE_NAME } from '@Store/constants';
 import { cn } from '@/functions/utils';
+import initBulkContentGenerationTracker from './bulk-content-generation';
+import getBatchGenerationStatusProps from './bulk-content-generation/badge-prop-getter';
+import BatchFailureTooltip from './bulk-content-generation/failure-tooltip';
 import '@Store/store';
 import './style.scss';
+
+// Track bulk content generation progress on the list screens. An older Pro
+// still ships its own tracker, so the flag keeps only one of them mounted.
+if ( window?.surerank_seo_bar?.bulk_generation ) {
+	initBulkContentGenerationTracker();
+}
 
 // Initialize a global RenderQueue for sequential badge rendering
 const renderQueue = new RenderQueue();
@@ -118,23 +126,25 @@ const CustomBadge = ( {
 		className: 'w-fit',
 	};
 
-	// Batch generation status getter from filters
-	const getBatchGenerationStatus = applyFilters(
-		'surerank-pro.bulk-content-generation.badge-prop-getter',
-		null
-	);
 	// Check batch generation status first
 	let batchStatus = null;
-	if ( ! isUser && typeof getBatchGenerationStatus === 'function' ) {
-		batchStatus = getBatchGenerationStatus(
+	if ( ! isUser ) {
+		batchStatus = getBatchGenerationStatusProps(
 			parseInt( postIdRef.current || 0 ),
 			batchGeneration
 		);
 	}
+	// requiresPro/message drive the tooltip below, they are not Badge props.
+	const {
+		requiresPro: batchUpgradeRequired = false,
+		message: batchFailureMessage = '',
+		...batchBadgeProps
+	} = batchStatus ?? {};
+
 	if ( batchStatus ) {
 		badgeProps = {
 			...badgeProps,
-			...batchStatus,
+			...batchBadgeProps,
 		};
 	} else if ( ! seoChecks || errorMessage ) {
 		badgeProps = {
@@ -157,22 +167,27 @@ const CustomBadge = ( {
 	}
 
 	return (
-		<div
-			onClick={ handleBadgeClick }
-			role="button"
-			tabIndex={ batchStatus ? -1 : 0 }
-			className={ cn(
-				'inline-block',
-				batchStatus ? 'cursor-default' : 'cursor-pointer'
-			) }
-			onKeyDown={ ( e ) => {
-				if ( e.key === 'Enter' || e.key === ' ' ) {
-					handleBadgeClick( e );
-				}
-			} }
+		<BatchFailureTooltip
+			message={ batchFailureMessage }
+			upgradeRequired={ batchUpgradeRequired }
 		>
-			<Badge { ...badgeProps } />
-		</div>
+			<div
+				onClick={ handleBadgeClick }
+				role="button"
+				tabIndex={ batchStatus ? -1 : 0 }
+				className={ cn(
+					'inline-block',
+					batchStatus ? 'cursor-default' : 'cursor-pointer'
+				) }
+				onKeyDown={ ( e ) => {
+					if ( e.key === 'Enter' || e.key === ' ' ) {
+						handleBadgeClick( e );
+					}
+				} }
+			>
+				<Badge { ...badgeProps } />
+			</div>
+		</BatchFailureTooltip>
 	);
 };
 

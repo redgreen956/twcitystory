@@ -21,6 +21,7 @@ import {
 	refreshPageChecks,
 	isSeoAnalysisDisabled,
 	isBricksBuilder,
+	isTagDivBuilder,
 	isAvadaBuilder,
 	isFrontend,
 	isListingPage,
@@ -219,7 +220,8 @@ const Analyze = () => {
 			{ /* Show save message for page builder editors (not frontend viewer) */ }
 			{ ( isElementorBuilder() ||
 				isBricksBuilder() ||
-				isBreakdanceBuilder() ) && (
+				isBreakdanceBuilder() ||
+				isTagDivBuilder() ) && (
 				<RefreshAlert
 					message={ __(
 						'Please save changes in the editor before refreshing the checks.',
