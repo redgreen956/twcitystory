@@ -222,6 +222,27 @@ h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-backg
 .film-card .wp-block-post:hover .film-overlay {
   opacity: 1 !important;
 }
+
+/* ...（上面是您原本 1~4 的設定，維持不動）... */
+
+/* 5. 只有當滑鼠停在「單一文章」時，該文章的文字才淡入 */
+.film-card li:hover .film-overlay,
+.film-card .wp-block-post:hover .film-overlay {
+  opacity: 1 !important;
+}
+
+/* ========================================= */
+/* 以下為新增的導覽列動畫設定 */
+/* ========================================= */
+
+/* 導覽列：黑色漸變為品牌紫 */
+.wp-block-navigation-item a {
+    color: #888888!important; /* 預設為淺灰色 */
+    transition: color 0.3s ease !important; /* 0.3秒的平滑動畫 */
+}
+.wp-block-navigation-item a:hover {
+    color: #5724FF !important; /* 滑鼠移過時變成 Logo 紫色 */
+}
 :root :where(.wp-block-navigation){font-weight: 500;}
 :root :where(.wp-block-navigation a:where(:not(.wp-element-button))){text-decoration: none;}
 :root :where(.wp-block-navigation a:where(:not(.wp-element-button)):hover){text-decoration: underline;}

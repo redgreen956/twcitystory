@@ -185,6 +185,27 @@ h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-backg
 .film-card .wp-block-post:hover .film-overlay {
   opacity: 1 !important;
 }
+
+/* ...（上面是您原本 1~4 的設定，維持不動）... */
+
+/* 5. 只有當滑鼠停在「單一文章」時，該文章的文字才淡入 */
+.film-card li:hover .film-overlay,
+.film-card .wp-block-post:hover .film-overlay {
+  opacity: 1 !important;
+}
+
+/* ========================================= */
+/* 以下為新增的導覽列動畫設定 */
+/* ========================================= */
+
+/* 導覽列：黑色漸變為品牌紫 */
+.wp-block-navigation-item a {
+    color: #888888!important; /* 預設為淺灰色 */
+    transition: color 0.3s ease !important; /* 0.3秒的平滑動畫 */
+}
+.wp-block-navigation-item a:hover {
+    color: #5724FF !important; /* 滑鼠移過時變成 Logo 紫色 */
+}
 :root :where(.wp-block-navigation){font-weight: 500;}
 :root :where(.wp-block-navigation a:where(:not(.wp-element-button))){text-decoration: none;}
 :root :where(.wp-block-navigation a:where(:not(.wp-element-button)):hover){text-decoration: underline;}
@@ -269,8 +290,12 @@ h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-backg
 <figure style="padding-bottom:0;margin-bottom:0" class="wp-block-post-featured-image"><a href="https://twcitystory.com/canon-fd-28mm/" target="_self"><img decoding="async" width="1929" height="1279" src="https://twcitystory.com/wp-content/uploads/2026/07/Konica-C35_Fujicolor-200_17.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="看我不曾看過的風景，老鏡散步" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-left-radius:0px;border-bottom-right-radius:0px;width:100%;object-fit:cover;" srcset="https://twcitystory.com/wp-content/uploads/2026/07/Konica-C35_Fujicolor-200_17.webp 1929w, https://twcitystory.com/wp-content/uploads/2026/07/Konica-C35_Fujicolor-200_17-300x199.webp 300w, https://twcitystory.com/wp-content/uploads/2026/07/Konica-C35_Fujicolor-200_17-1024x679.webp 1024w, https://twcitystory.com/wp-content/uploads/2026/07/Konica-C35_Fujicolor-200_17-768x509.webp 768w, https://twcitystory.com/wp-content/uploads/2026/07/Konica-C35_Fujicolor-200_17-1536x1018.webp 1536w" sizes="(max-width: 1929px) 100vw, 1929px" title="看我不曾看過的風景，老鏡散步"></a></figure>
 
 <h4 class="wp-block-post-title">看我不曾看過的風景，老鏡散步</h4>
+</li><li class="wp-block-post post-3303 post type-post status-publish format-standard has-post-thumbnail hentry category-project category-city-stories tag-68 tag-173 tag-74 tag-69">
+<figure style="padding-bottom:0;margin-bottom:0" class="wp-block-post-featured-image"><a href="https://twcitystory.com/hamasen-film-street-photography-walk/" target="_self"><img decoding="async" width="1440" height="962" src="https://twcitystory.com/wp-content/uploads/2026/08/272071791_612729423482738_7831348639966827401_n.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="底片散步街拍：哈瑪星" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-left-radius:0px;border-bottom-right-radius:0px;width:100%;object-fit:cover;" srcset="https://twcitystory.com/wp-content/uploads/2026/08/272071791_612729423482738_7831348639966827401_n.jpg 1440w, https://twcitystory.com/wp-content/uploads/2026/08/272071791_612729423482738_7831348639966827401_n-300x200.jpg 300w, https://twcitystory.com/wp-content/uploads/2026/08/272071791_612729423482738_7831348639966827401_n-1024x684.jpg 1024w, https://twcitystory.com/wp-content/uploads/2026/08/272071791_612729423482738_7831348639966827401_n-768x513.jpg 768w" sizes="(max-width: 1440px) 100vw, 1440px" title="底片散步街拍：哈瑪星"></a></figure>
+
+<h4 class="wp-block-post-title">底片散步街拍：哈瑪星</h4>
 </li><li class="wp-block-post post-2286 post type-post status-publish format-standard has-post-thumbnail hentry category-project category-portfolio category-visual-creator tag-130 tag-129 tag-58">
-<figure style="padding-bottom:0;margin-bottom:0" class="wp-block-post-featured-image"><a href="https://twcitystory.com/milkfish-food-culture/" target="_self"><img decoding="async" width="1920" height="1080" src="https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="大航海時代飲食踏查：虱目魚" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-left-radius:0px;border-bottom-right-radius:0px;width:100%;object-fit:cover;" srcset="https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture.jpg 1920w, https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture-300x169.jpg 300w, https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture-1024x576.jpg 1024w, https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture-768x432.jpg 768w, https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture-1536x864.jpg 1536w" sizes="(max-width: 1920px) 100vw, 1920px" title="大航海時代飲食踏查：虱目魚"></a></figure>
+<figure style="padding-bottom:0;margin-bottom:0" class="wp-block-post-featured-image"><a href="https://twcitystory.com/milkfish-food-culture/" target="_self"><img loading="lazy" decoding="async" width="1920" height="1080" src="https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="大航海時代飲食踏查：虱目魚" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-left-radius:0px;border-bottom-right-radius:0px;width:100%;object-fit:cover;" srcset="https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture.jpg 1920w, https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture-300x169.jpg 300w, https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture-1024x576.jpg 1024w, https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture-768x432.jpg 768w, https://twcitystory.com/wp-content/uploads/2026/07/milkfish-food-culture-1536x864.jpg 1536w" sizes="auto, (max-width: 1920px) 100vw, 1920px" title="大航海時代飲食踏查：虱目魚"></a></figure>
 
 <h4 class="wp-block-post-title">大航海時代飲食踏查：虱目魚</h4>
 </li></ul>
